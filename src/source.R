@@ -4,16 +4,12 @@ library(tidytext)
 
 #DATA CLEANING AND PREPARATION ---------------------------------------------------------
 
-data <- read.csv("C:\\Users\\Ross Bowen\\Documents\\twit_13Aug14_1ksample.csv", 
+data <- read.csv("C:\\Users\\Ross Bowen\\Documents\\chunck0.uniq.csv", 
                  header = F, 
-                 fileEncoding = "UTF-16LE", 
                  stringsAsFactors = FALSE)
 
 data <- data %>% 
-  select(V2:V4, V6:V10) %>% 
-  filter(V4 == "en",
-         !is.na(V8),
-         !is.na(V9)) #Filters to English tweets, which have locational coordinates.
+  filter(language == "en")
 
 #Function which cleans tweets (maybe shorten later?)
 clean_tweet <- function(text){
@@ -27,11 +23,11 @@ clean_tweet <- function(text){
   clean_tweet <- gsub("^\\s+|\\s+$", "", clean_tweet)  
 }
 
-cleaned_data <- data %>% mutate(V10 = clean_tweet(V10))
+cleaned_data <- data %>% mutate(text = clean_tweet(text))
 
 #TOKENISING ----------------------------------------------------------------------------
 
-tokenised_data <- cleaned_data %>% unnest_tokens(input = V10, output = "word", drop = FALSE)
+tokenised_data <- cleaned_data %>% unnest_tokens(input = text, output = "word", drop = FALSE)
 
 #SENTIMENT SCORING ---------------------------------------------------------------------
 
