@@ -2,6 +2,8 @@ library(rtweet)
 library(tidyverse)
 library(tidytext)
 
+#Usage: process_data("Ross Bowen", 0)
+
 process_data <- function(username, input){
 
 #DATA CLEANING AND PREPARATION ---------------------------------------------------------
