@@ -2,13 +2,17 @@ library(rtweet)
 library(tidyverse)
 library(tidytext)
 
-#Usage: process_data("Ross Bowen", 0)
+#Usage: process_data(filepath)
+#Calling process_data(filepath), and replacing filepath with the location of the 
+#file you're looking to "sentimise", returns the file, to the same location specified,
+#but with an AFINN score attached.
+#e.g. process_data("C:\\Users\\Ross Bowen\\Documents\\chunck0.uniq.csv")
 
-process_data <- function(username, input){
+process_data <- function(filepath){
 
 #DATA CLEANING AND PREPARATION ---------------------------------------------------------
 
-data <- read.csv(paste0("C:\\Users\\", username, "\\Documents\\chunck", input, ".uniq.csv"), 
+data <- read.csv(paste0(filepath), 
                  header = TRUE, 
                  stringsAsFactors = FALSE)
 
@@ -52,7 +56,7 @@ scored_data_afinn <- tokenised_data %>%
 
 #OUTPUT --------------------------------------------------------------------------------
 
-write.csv(scored_data_afinn, paste0("C:\\Users\\", username, "\\Documents\\chunck", input, ".uniq.csv"),
+write.csv(scored_data_afinn, filepath,
           row.names = FALSE)
 
 }
