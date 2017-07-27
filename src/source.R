@@ -12,7 +12,7 @@ process_data <- function(filepath){
 
 #DATA CLEANING AND PREPARATION ---------------------------------------------------------
 
-data <- read.csv(paste0(filepath), 
+data <- read.csv(filepath, 
                  header = TRUE, 
                  stringsAsFactors = FALSE)
 
@@ -40,10 +40,20 @@ tokenised_data <- cleaned_data %>% unnest_tokens(input = text, output = "word", 
 
 #SENTIMENT SCORING ---------------------------------------------------------------------
 
-scored_data_afinn <- tokenised_data %>%
-  inner_join(get_sentiments("afinn"), by = "word") %>%
+scored_data <- tokenised_data %>%
+  inner_join(bind_rows(get_sentiments("nrc"), get_sentiments("afinn")), by = "word") %>%
   group_by(ID) %>%
-  summarise(afinn = sum(score)) %>% 
+  summarise(afinn = sum(score, na.rm = TRUE),
+            anger = sum(sentiment == "anger", na.rm = TRUE),
+            anticipation = sum(sentiment == "anticipation", na.rm = TRUE),
+            disgust = sum(sentiment == "disgust", na.rm = TRUE),
+            fear = sum(sentiment == "fear", na.rm = TRUE),
+            joy = sum(sentiment == "joy", na.rm = TRUE),
+            negative = sum(sentiment == "negative", na.rm = TRUE),
+            positive = sum(sentiment == "positive", na.rm = TRUE),
+            sadness = sum(sentiment == "sadness", na.rm = TRUE),
+            surprise = sum(sentiment == "surprise", na.rm = TRUE),
+            trust = sum(sentiment == "trust", na.rm = TRUE)) %>% 
   full_join(cleaned_data, by = "ID") %>%
   select(-ID)
 
