@@ -54,6 +54,7 @@ scored_data <- tokenised_data %>%
             sadness = sum(sentiment == "sadness", na.rm = TRUE),
             surprise = sum(sentiment == "surprise", na.rm = TRUE),
             trust = sum(sentiment == "trust", na.rm = TRUE)) %>% 
+  mutate(worry = anger + disgust + fear + negative + sadness) %>%
   full_join(cleaned_data, by = "ID") %>%
   select(-ID)
 
