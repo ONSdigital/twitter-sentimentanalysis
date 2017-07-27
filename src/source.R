@@ -42,7 +42,7 @@ tokenised_data <- cleaned_data %>% unnest_tokens(input = text, output = "word", 
 
 scored_data <- tokenised_data %>%
   inner_join(bind_rows(get_sentiments("nrc"), get_sentiments("afinn")), by = "word") %>%
-  group_by(ID) %>%
+  group_by(ID, word) %>%
   summarise(afinn = sum(score, na.rm = TRUE),
             anger = sum(sentiment == "anger", na.rm = TRUE),
             anticipation = sum(sentiment == "anticipation", na.rm = TRUE),
@@ -53,7 +53,20 @@ scored_data <- tokenised_data %>%
             positive = sum(sentiment == "positive", na.rm = TRUE),
             sadness = sum(sentiment == "sadness", na.rm = TRUE),
             surprise = sum(sentiment == "surprise", na.rm = TRUE),
-            trust = sum(sentiment == "trust", na.rm = TRUE)) %>% 
+            trust = sum(sentiment == "trust", na.rm = TRUE),
+            condensed_worry = any(sentiment %in% c("anger", "disgust", "fear", "negative", "sadness"), na.rm = TRUE)) %>% 
+  summarise(afinn = sum(afinn, na.rm = TRUE),
+            anger = sum(anger, na.rm = TRUE),
+            anticipation = sum(anticipation, na.rm = TRUE),
+            disgust = sum(disgust, na.rm = TRUE),
+            fear = sum(fear, na.rm = TRUE),
+            joy = sum(joy, na.rm = TRUE),
+            negative = sum(negative, na.rm = TRUE),
+            positive = sum(positive, na.rm = TRUE),
+            sadness = sum(sadness, na.rm = TRUE),
+            surprise = sum(surprise, na.rm = TRUE),
+            trust = sum(trust, na.rm = TRUE),
+            condensed_worry = sum(condensed_worry)) %>%
   mutate(worry = anger + disgust + fear + negative + sadness) %>%
   full_join(cleaned_data, by = "ID") %>%
   select(-ID)
@@ -67,7 +80,7 @@ scored_data <- tokenised_data %>%
 
 #OUTPUT --------------------------------------------------------------------------------
 
-write.csv(scored_data_afinn, filepath,
+write.csv(scored_data, filepath,
           row.names = FALSE)
 
 }
