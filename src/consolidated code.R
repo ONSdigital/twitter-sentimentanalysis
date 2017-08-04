@@ -15,8 +15,11 @@ process_data <- function(filepath,output){
 #DATA CLEANING AND PREPARATION ---------------------------------------------------------
 
 data <- read.csv(filepath, 
-                 header = TRUE, 
+                 header = FALSE, 
                  stringsAsFactors = FALSE)
+
+colnames(data) <- c("country","date","dow","language","location","lsoa11","month",
+                    "msoa11","place","text","tod","user_name","lat","long")
 
 data <- data %>% 
   filter(language == "en") %>%
