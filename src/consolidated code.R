@@ -60,7 +60,8 @@ scored_data_final <- tokenised_data %>%
   group_by(ID) %>%
   summarise(afinn = sum(score)) %>% 
   full_join(worry_scored_data, by = "ID") %>%
-  mutate(afinn= ifelse (is.na(afinn),0,afinn))
+  mutate(afinn= ifelse (is.na(afinn),0,afinn))%>%
+  filter(nchar(text) < 140)
 
 #OUTPUT --------------------------------------------------------------------------------
 
@@ -70,6 +71,6 @@ write.csv(scored_data_final,
 
 }
 
-process_data("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\chunck0.uniq.csv",
-             "C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\test.csv")
+process_data("C:\\Users\\Joseph Jenkins\\Desktop\\cleaned\\foo.csv",
+             "C:\\Users\\Joseph Jenkins\\Desktop\\cleaned\\footest.csv")
 
