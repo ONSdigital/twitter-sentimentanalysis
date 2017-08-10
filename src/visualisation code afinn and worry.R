@@ -7,7 +7,8 @@ library(ggplot2)
 
 #DATA CLEANING AND PREPARATION ---------------------------------------------------------
 
-data <- read.csv("C:/Users/Eleanor Martin.DESKTOP-2EC17IB/Documents/test.csv", 
+plotting<-function(input){
+  data <- read.csv(input, 
                  header = TRUE, 
                  stringsAsFactors = FALSE)
 
@@ -78,6 +79,7 @@ tokenised_data %>%
 
 wordcloud (worry_word_counts$word, freq= worry_word_counts$n, max.words=100,
            random.order=FALSE, color = 'paleturquoise3')
+}
 
 
 
