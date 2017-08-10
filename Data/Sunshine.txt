@@ -1,0 +1,10 @@
+month	Year	Total hours
+Apr	2014	144.9
+May	2014	149.6
+Jun	2014	178.4
+Jul	2014	223.0
+Aug	2014	171.0
+Sep	2014	123.3
+Oct 	2014	82.8 
+Nov	2014	51.9
+Dec	2014	57.1 
