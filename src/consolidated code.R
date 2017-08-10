@@ -37,7 +37,9 @@ clean_tweet <- function(text){
   clean_tweet <- gsub("^\\s+|\\s+$", "", clean_tweet)  
 }
 
-cleaned_data <- data %>% mutate(text = clean_tweet(text))
+cleaned_data <- data %>% 
+  mutate(text = clean_tweet(text))%>%
+  filter(nchar(text)<200)
 
 #TOKENISING ----------------------------------------------------------------------------
 
@@ -69,7 +71,3 @@ write.csv(scored_data_final,
           row.names = FALSE)
 
 }
-
-process_data("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\chunck0.uniq.csv",
-             "C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\test.csv")
-
