@@ -1,7 +1,7 @@
-#function to create a mean worry scores for day, week, month
-#e.g. to create mean for month; means_by_month<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r1.csv", 2014, "month")
+#function to create a mean worry scores for day, week, month and outputs a csv
+#e.g. to create mean for month; means_by_month<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r1.csv", 2014, "week", "C:\\Users\\Alan Evans\\Desktop\\bar.csv")
 
-worry_function <- function(input, year, frequency) {
+worry_function <- function(input, year, frequency, output) {
   
   data <- read.csv(input, 
                    header = TRUE, 
@@ -13,7 +13,8 @@ worry_function <- function(input, year, frequency) {
     output <- data %>% 
       mutate(date = ymd(date)) %>% 
       group_by(date) %>% 
-      summarise(mean_worry = mean(worry))
+      summarise(mean_worry = mean(worry))%>%
+      write.csv(output)
   }
   
   if (frequency == "week") {
@@ -21,7 +22,8 @@ worry_function <- function(input, year, frequency) {
       mutate(week = week(ymd(date))) %>% 
       group_by(week) %>% 
       summarise(mean_worry = mean(worry)) %>%
-      mutate(date = dmy(paste0("01-01-", year)) + weeks(week))
+      mutate(date = dmy(paste0("01-01-", year)) + weeks(week))%>%
+      write.csv(output) 
   }
   
   if (frequency == "month") {
@@ -29,9 +31,10 @@ worry_function <- function(input, year, frequency) {
       mutate(month = month(ymd(date))) %>% 
       group_by(month) %>% 
       summarise(mean_worry = mean(worry)) %>% 
-      mutate(date = dmy(paste0("01-01-", year)) + months(month))
+      mutate(date = dmy(paste0("01-01-", year)) + months(month))%>%
+      write.csv(output) 
   }
   
-  output                   
+                   
   
 }
