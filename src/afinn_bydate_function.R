@@ -1,4 +1,4 @@
-#function to create a mean afinn scores for day, week, month and outputs a csv
+#function to create a mean afinn scores for date, week, month and outputs a csv
 #values for frequency are "date", "week", "month"
 #Can tag with a sample flag indicator for further analysis e.g. 1 or "Alpha"
 #e.g. to create mean for month; means_by_month<- afinn_function("C:\\Users\\Alan Evans\\Documents\\output_r5.csv", 2014, "date")
@@ -15,7 +15,7 @@ afinn_function <- function(input, year, frequency, sampletag) {
     output <- data %>% 
       mutate(date = ymd(date)) %>% 
       group_by(date) %>% 
-      summarise(mean_afinn = mean(afinn))%>%
+      summarise(mean_afinn = mean(afinn), number =n())%>%
       mutate(sample = sampletag)
     
   }
@@ -24,7 +24,7 @@ afinn_function <- function(input, year, frequency, sampletag) {
     output <- data %>% 
       mutate(week = week(ymd(date))) %>% 
       group_by(week) %>% 
-      summarise(mean_afinn = mean(afinn)) %>%
+      summarise(mean_afinn = mean(afinn), number =n()) %>%
       mutate(date = dmy(paste0("01-01-", year)) + weeks(week))%>%
       mutate(sample = sampletag)
     
@@ -34,7 +34,7 @@ afinn_function <- function(input, year, frequency, sampletag) {
     output <-  data %>% 
       mutate(month = month(ymd(date))) %>% 
       group_by(month) %>% 
-      summarise(mean_afinn = mean(afinn)) %>% 
+      summarise(mean_afinn = mean(afinn), number =n()) %>% 
       mutate(date = dmy(paste0("01-01-", year)) + months(month))%>%
       mutate(sample = sampletag)
   }
@@ -125,11 +125,11 @@ afinn_means_month_r5<- afinn_function("C:\\Users\\Alan Evans\\Documents\\output_
 
 
 #Plots for day
-plot_function_afinn(afinn_means_day_r1, "Date")
-plot_function_afinn(afinn_means_day_r2, "Date")
-plot_function_afinn(afinn_means_day_r3, "Date")
-plot_function_afinn(afinn_means_day_r4, "Date")
-plot_function_afinn(afinn_means_day_r5, "Date")
+plot_function_afinn(afinn_means_date_r1, "Date")
+plot_function_afinn(afinn_means_date_r2, "Date")
+plot_function_afinn(afinn_means_date_r3, "Date")
+plot_function_afinn(afinn_means_date_r4, "Date")
+plot_function_afinn(afinn_means_date_r5, "Date")
 
 #plots for week
 plot_function_afinn(afinn_means_week_r1, "week")
