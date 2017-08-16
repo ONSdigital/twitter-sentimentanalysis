@@ -1,7 +1,14 @@
 Data Sources
 
 Weather
-http://www.metoffice.gov.uk/climate/uk/summaries/datasets
+Temperature, rainfall and sunshine datasets are taken from this link.
+(mean air) Temperature is: "Average of mean daily max and mean daily min air temperatures °C"
+Sunshine is: "Total hours of bright sunshine during the month
+based on the Campbell-Stokes recorder"
+Rainfall: "Total precipitation on days with >= 1mm divided by the count of days with >= 1mm during the year"
+	http://www.metoffice.gov.uk/climate/uk/summaries/datasets
+Sunshine is: "Total hours of bright sunshine during the month based on the Campbell-Stokes recorder"
+Variable definitions are found in the "State of the UK Climate 2016" report (linked in Slack) on page 50.
 
 FTSE 100
-http://markets.businessinsider.com/index/historical-prices/FTSE_100/1.4.2014_30.11.2014
+	http://markets.businessinsider.com/index/historical-prices/FTSE_100/1.4.2014_30.11.2014
