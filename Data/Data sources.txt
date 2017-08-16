@@ -1,0 +1,7 @@
+Data Sources
+
+Weather
+http://www.metoffice.gov.uk/climate/uk/summaries/datasets
+
+FTSE 100
+http://markets.businessinsider.com/index/historical-prices/FTSE_100/1.4.2014_30.11.2014
