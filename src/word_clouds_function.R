@@ -4,7 +4,8 @@ library(tidytext)
 library(wordcloud)
 library(reshape2)
 library(ggplot2)
-
+#"plotting" is a function that takes the .csv from the clean_and_sentiment_score_function as input,
+# and then produces word clouds of the most common "worry" words and afinn +/-ive words.
 #DATA CLEANING AND PREPARATION ---------------------------------------------------------
 
 plotting<-function(input){
