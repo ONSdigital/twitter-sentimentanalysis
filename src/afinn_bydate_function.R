@@ -1,6 +1,6 @@
 #function to create a mean afinn scores for day, week, month and outputs a csv
 #values for frequency are "date", "week", "month"
-#CAn tag with a sample flag indicator for further analysis
+#Can tag with a sample flag indicator for further analysis e.g. 1 or "Alpha"
 #e.g. to create mean for month; means_by_month<- afinn_function("C:\\Users\\Alan Evans\\Documents\\output_r5.csv", 2014, "date")
 
 afinn_function <- function(input, year, frequency, sampletag) {

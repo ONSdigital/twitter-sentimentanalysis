@@ -1,5 +1,7 @@
-#function to create a mean worry scores for day, week, month
-#e.g. to create mean for month; means_by_month<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r1.csv", 2014, "month")
+#function to create a mean worry scores for day, week, month and outputs a csv
+#values for frequency are "date", "week", "month"
+#Can tag with a sample flag indicator for further analysis e,g 1 or "Alpha"
+#e.g. to create mean for month; worry_means_by_month<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r5.csv", 2014, "date", 1)
 
 worry_function <- function(input, year, frequency, sampletag) {
   
