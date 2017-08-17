@@ -89,8 +89,17 @@ geo_scored_data5 <- scored_data5 %>%
    summarise(mean_afinn=mean(afinn), mean_worry= mean(worry), number=n())
  
  #plot sentiment by region 
- ggplot(data=region_mean_1, aes(x=RGN11NM, y=mean_afinn)) + 
-   geom_bar(stat="identity")
+ ggplot(data=region_mean_1, aes(x=reorder(RGN11NM,number), y=number)) + 
+   geom_bar(stat="identity", fill='paleturquoise3') +
+   ggtitle ("Number of tweets by region")+
+   labs (x= "Region" ,y="Number of tweets in sample") +
+   theme(axis.line = element_line(colour = "grey"),
+         panel.grid.major = element_blank(),
+         panel.grid.minor = element_blank(),
+         panel.border = element_blank(),
+         panel.background = element_blank(),
+         plot.title = element_text(hjust = 0.5),
+         axis.text.x = element_text(angle = 45, hjust = 1))
  
  #plot sentiment by LA
  ggplot(data=la_mean_1, aes(x=reorder(LAD11NM, mean), y=mean_afinn)) + 

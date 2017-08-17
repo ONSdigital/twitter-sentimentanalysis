@@ -3,6 +3,10 @@
 #Can tag with a sample flag indicator for further analysis e,g 1 or "Alpha"
 #e.g. to create mean for month; worry_means_by_month<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r5.csv", 2014, "date", 1)
 
+library (dplyr)
+library (lubridate)
+library (ggplot2)
+
 worry_function <- function(input, year, frequency, sampletag) {
   
   data <- read.csv(input, 
@@ -13,6 +17,7 @@ worry_function <- function(input, year, frequency, sampletag) {
   
   if (frequency == "date") {
     output <- data %>% 
+      filter(month!="Nov") %>%
       mutate(date = ymd(date)) %>% 
       group_by(date) %>% 
       summarise(mean_worry = mean(worry),number =n())%>%
@@ -21,6 +26,7 @@ worry_function <- function(input, year, frequency, sampletag) {
   
   if (frequency == "week") {
     output <- data %>% 
+      filter(month!="Nov") %>%
       mutate(week = week(ymd(date))) %>% 
       group_by(week) %>% 
       summarise(mean_worry = mean(worry),number =n()) %>%
@@ -30,6 +36,7 @@ worry_function <- function(input, year, frequency, sampletag) {
   
   if (frequency == "month") {
     output <-  data %>% 
+      filter(month!="Nov") %>%
       mutate(month = month(ymd(date))) %>% 
       group_by(month) %>% 
       summarise(mean_worry = mean(worry),number =n()) %>% 
@@ -58,75 +65,76 @@ plot_function_worry <- function(chart, frequency){
   
 }
 
+
 #produce mean scores from output file date
-worry_means_date_r1<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r1.csv",
+worry_means_date_r1<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_scored.csv",
                                      2014, 
                                      "date", 1) 
 
-worry_means_date_r2<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r2.csv",
+worry_means_date_r2<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r2_scored.csv",
                                      2014, 
                                      "date", 2) 
 
-worry_means_date_r3<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r3.csv",
+worry_means_date_r3<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r3_scored.csv",
                                      2014, 
                                      "date", 3) 
 
-worry_means_date_r4<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r4.csv",
+worry_means_date_r4<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r4_scored.csv",
                                       2014, 
                                       "date", 4)
 
-worry_means_date_r5<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r5.csv",
+worry_means_date_r5<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r5_scored.csv",
                                      2014, 
                                      "date", 5) 
 
 #produce mean scores from output file week
-worry_means_week_r1<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r1.csv",
+worry_means_week_r1<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_scored.csv",
                                       2014, 
                                       "week", 1) 
 
-worry_means_week_r2<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r2.csv",
+worry_means_week_r2<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r2_scored.csv",
                                       2014, 
                                       "week", 2) 
 
-worry_means_week_r3<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r3.csv",
+worry_means_week_r3<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r3_scored.csv",
                                       2014, 
                                       "week", 3) 
 
-worry_means_week_r4<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r4.csv",
+worry_means_week_r4<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r4_scored.csv",
                                       2014, 
                                       "week", 4)
 
-worry_means_week_r5<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r5.csv",
+worry_means_week_r5<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r5_scored.csv",
                                       2014, 
                                       "week", 5)
 
 #produce mean scores from output file month
-worry_means_month_r1<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r1.csv",
+worry_means_month_r1<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_scored.csv",
                                       2014, 
                                       "month", 1) 
 
-worry_means_month_r2<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r2.csv",
+worry_means_month_r2<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r2_scored.csv",
                                       2014, 
                                       "month", 2) 
 
-worry_means_month_r3<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r3.csv",
+worry_means_month_r3<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r3_scored.csv",
                                       2014, 
                                       "month", 3) 
 
-worry_means_month_r4<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r4.csv",
+worry_means_month_r4<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r4_scored.csv",
                                       2014, 
                                       "month", 4)
 
-worry_means_month_r5<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r5.csv",
+worry_means_month_r5<- worry_function("C:\\Users\\Eleanor Martin.DESKTOP-2EC17IB\\Documents\\total_output_r5_scored.csv",
                                       2014, 
                                       "month", 5) 
 
 #Plots for day
-plot_function_worry(worry_means_day_r1, "Date")
-plot_function_worry(worry_means_day_r2, "Date")
-plot_function_worry(worry_means_day_r3, "Date")
-plot_function_worry(worry_means_day_r4, "Date")
-plot_function_worry(worry_means_day_r5, "Date")
+plot_function_worry(worry_means_date_r1, "Date")
+plot_function_worry(worry_means_date_r2, "Date")
+plot_function_worry(worry_means_date_r3, "Date")
+plot_function_worry(worry_means_date_r4, "Date")
+plot_function_worry(worry_means_date_r5, "Date")
 
 #plots for week
 plot_function_worry(worry_means_week_r1, "week")
