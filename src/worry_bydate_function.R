@@ -72,8 +72,8 @@ worry_means_date_r3<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r
                                      "date", 3) 
 
 worry_means_date_r4<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r4.csv",
-                                      2014, 
-                                      "date", 4)
+                                     2014, 
+                                     "date", 4)
 
 worry_means_date_r5<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r5.csv",
                                      2014, 
@@ -81,24 +81,24 @@ worry_means_date_r5<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r
 
 #produce mean scores from output file week
 worry_means_week_r1<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r1.csv",
-                                      2014, 
-                                      "week", 1) 
+                                     2014, 
+                                     "week", 1) 
 
 worry_means_week_r2<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r2.csv",
-                                      2014, 
-                                      "week", 2) 
+                                     2014, 
+                                     "week", 2) 
 
 worry_means_week_r3<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r3.csv",
-                                      2014, 
-                                      "week", 3) 
+                                     2014, 
+                                     "week", 3) 
 
 worry_means_week_r4<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r4.csv",
-                                      2014, 
-                                      "week", 4)
+                                     2014, 
+                                     "week", 4)
 
 worry_means_week_r5<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r5.csv",
-                                      2014, 
-                                      "week", 5)
+                                     2014, 
+                                     "week", 5)
 
 #produce mean scores from output file month
 worry_means_month_r1<- worry_function("C:\\Users\\Alan Evans\\Documents\\output_r1.csv",

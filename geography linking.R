@@ -1,6 +1,6 @@
 #import geography file
 
-geolookup <- read.csv("C:/Users/Eleanor Martin.DESKTOP-2EC17IB/Documents/LSOA11 lookup.csv", 
+geolookup <- read.csv("C:/Users/Alan Evans/Documents/LSOA11 lookup.csv", 
                  header = TRUE, 
                  stringsAsFactors = FALSE)%>%
                   select(LSOA11CD, LSOA11NM, LAD11CD, LAD11NM, RGN11CD, RGN11NM) %>%
